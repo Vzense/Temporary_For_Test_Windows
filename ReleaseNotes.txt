@@ -1,4 +1,7 @@
-﻿V3.2.16
+﻿V3.2.18
+1. fix Ps2_ConvertWorldToDepth API
+
+V3.2.16
 1. add Ps2_GetMappedPointDepthToRGB API
 
 V3.2.13
