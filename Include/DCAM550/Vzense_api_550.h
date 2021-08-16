@@ -1,5 +1,5 @@
-#ifndef VZENSE_API_800_H
-#define VZENSE_API_800_H
+#ifndef VZENSE_API_550_H
+#define VZENSE_API_550_H
 
 /**
 * @file Vzense_api2.h
@@ -558,4 +558,4 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetWaitTimeOfReadNextFrame(PsDeviceHandle
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetSDKVersion(char* version, int length);
-#endif /* VZENSE_API_800_H */
+#endif /* VZENSE_API_550_H */

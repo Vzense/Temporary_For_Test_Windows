@@ -1,5 +1,5 @@
-#ifndef VZENSE_ENUMS_800_H
-#define VZENSE_ENUMS_800_H
+#ifndef VZENSE_ENUMS_550_H
+#define VZENSE_ENUMS_550_H
 
 /**
  * @brief Depth range setting.\n 
@@ -8,15 +8,15 @@
  */
 typedef enum {
 	PsUnknown = -1,
-	PsNearRange = 0,               //!< Range0 - 1m
-	PsMidRange = 1,                //!< Range1 - 2m
-	PsFarRange = 2,                //!< Range2 - 4m	
-	PsXNearRange = 3,              //!< Range3 - 5m
-	PsXMidRange = 4,               //!< Range4 - 7m (NoCal)
-	PsXFarRange = 5,               //!< Range5 - 7m (NoCal)
-	PsXXNearRange = 6,             //!< Range6 - 9m (NoCal)
-	PsXXMidRange = 7,              //!< Range7 - 11m (NoCal)
-	PsXXFarRange = 8               //!< Range8 - 15m (NoCal)
+	PsNearRange = 0,               
+	PsMidRange = 1,                
+	PsFarRange = 2,                
+	PsXNearRange = 3,              
+	PsXMidRange = 4,               
+	PsXFarRange = 5,               
+	PsXXNearRange = 6,             
+	PsXXMidRange = 7,              
+	PsXXFarRange = 8               
 }PsDepthRange;
 
 /** 
@@ -161,4 +161,4 @@ typedef enum
 	DCAM800LITEUSB = 803,
 	MAX,
 }PsDeviceType;
-#endif /* VZENSE_ENUMS_800_H */
+#endif /* VZENSE_ENUMS_550_H */

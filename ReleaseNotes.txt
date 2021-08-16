@@ -1,14 +1,23 @@
-﻿V3.2.18
-1. fix Ps2_ConvertWorldToDepth API
+﻿V3.3.4
+1. Fix hotplug error without getting frame (not call the api Ps2_OpenDevice and Ps2_StartStream)
 
-V3.2.16
-1. add Ps2_GetMappedPointDepthToRGB API
+V3.3.3
+1. Fix hotplug error with multiple cameras in linux (added by V3.3.2)
+2. Fix memory leaking in Windows (added by V3.3.2)
 
-V3.2.13
+V3.3.2
+1. Optimize hoplug logic in network cable connection 
+
+V3.3.0
+1. Fix Ps2_ConvertWorldToDepth API
+2. Add Ps2_GetMappedPointDepthToRGB API for DCAM710
+3. Show FPS in FrameViewer.cpp
+
+V3.2.15
 1. Enum uvc & hid at the same time
 
 V3.2.12
-1. Fix hotPlug error with multiple cameras
+1. Fix hotplug error with multiple cameras
 
 V3.2.11
 1. Optimize SDK code with multiple cameras, 
@@ -21,7 +30,7 @@ V3.2.10
 V3.2.9
 1. Add api Ps2_GetSDKVersion(char* version, int length)
 2. Support Depth_60 in SDK code ,for DCAM710
-3. Optimize hotPlug code
+3. Optimize hotplug code
 
 V3.2.8
 1. Modify frameIndex(in PsFrame) counting logic

@@ -1,8 +1,8 @@
-#ifndef VZENSE_TYPES_800_H
-#define VZENSE_TYPES_800_H
+#ifndef VZENSE_TYPES_550_H
+#define VZENSE_TYPES_550_H
 
 #include <stdint.h>
-#include "Vzense_enums_800.h"
+#include "Vzense_enums_550.h"
 
 typedef uint16_t PsDepthPixel;  //!< Depth image pixel type in 16-bit
 typedef uint16_t PsGray16Pixel; //!< Gray image pixel type in 16-bit
@@ -239,4 +239,4 @@ typedef void(*PtrHotPlugStatusCallback)(const PsDeviceInfo* pInfo, int state);
 * contex pointer to the object of C++ class
 */
 typedef void(*PtrHotPlugStatusCallback_)(const PsDeviceInfo* pInfo, int state, void* contex);
-#endif /* VZENSE_TYPES_800_H */
+#endif /* VZENSE_TYPES_550_H */
