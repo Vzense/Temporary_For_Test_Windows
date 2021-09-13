@@ -1,4 +1,26 @@
-﻿V3.3.4
+﻿V3.3.10
+1. Modify 550P decode
+
+V3.3.9
+1. Add DCAM550E
+2. For Windows，modify COINIT_MULTITHREADED to COINIT_APARTMENTTHREADED in CoInitializeEx
+
+V3.3.8
+1. Just do resize,for DCAM550P with dsp
+2. Add Ps2_SetSlaveTrigger API for DCAM550
+
+V3.3.7
+1. Optimize ComputeRealDepth logic with DCAM550P
+2. Optimize Connect-Status when call Ps2_CloseDevice
+
+V3.3.6
+1. Support DSP for DCAM550P
+2. Optimize the value returned by the api
+
+V3.3.5
+1. Fix reopen failed, when remove the device and call the api Ps2_OpenDevice or Ps2_StartStream at the same time 
+
+V3.3.4
 1. Fix hotplug error without getting frame (not call the api Ps2_OpenDevice and Ps2_StartStream)
 
 V3.3.3
