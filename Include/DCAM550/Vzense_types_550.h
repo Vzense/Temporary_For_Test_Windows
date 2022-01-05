@@ -170,39 +170,6 @@ typedef struct
 	uint16_t	effectDepthMinFar;
 }PsMeasuringRange;
 
-union IPAddr
-{
-	uint32_t ip_int32;
-	struct
-	{
-		uint8_t s3;
-		uint8_t s2;
-		uint8_t s1;
-		uint8_t s0;
-	}ip_int8;
-};
-
-typedef struct
-{
-	PsLinkType linkType;
-	union LinkInfo
-	{
-		struct Socket
-		{
-			IPAddr ip;
-		}socket;
-		struct USB
-		{
-			int16_t vid;
-			int16_t pid;
-		}usb;
-	}linkInfo;
-	PsDataMode* pSupportModeList;
-	int supportModeListLen;
-	PsDeviceType devicetype;
-	int16_t rotatetype;
-}PsSessionInfo;
-
 typedef struct
 {
 	uint8_t range;

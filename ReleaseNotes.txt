@@ -1,4 +1,57 @@
-﻿V3.3.10
+﻿V3.4.8
+1. Add API for DCAM560C
+	Ps2_SetRGBFrequencyOfPowerLine
+	Ps2_GetRGBFrequencyOfPowerLine
+
+V3.4.7
+1. Add API for DCAM560C
+	Ps2_GetDeviceIP
+	Ps2_GetDeviceMAC
+	Ps2_SetRGBBrightness
+	Ps2_GetRGBBrightness
+	Ps2_SetRGBExposure
+	Ps2_GetRGBExposure
+2. Set default value false for SpatialFilter
+
+V3.4.6
+1. Fix mapping error and get RGB resloution error for DCAM560C
+
+V3.4.5
+1. Add DCAM560 DCAM560C
+
+V3.4.4
+1. Optimize SDK code
+
+V3.4.3
+1. Move callback to thread for processing
+
+V3.4.2
+1. Fix Ps2_ReadNextFrame error, after hoplug logic in network connection 
+2. Optimize SDK code
+3. Support upgrade Firmware for DCAM550(U & P),Support upgrade Json config for DCAM710 and DCAM550(U & P)
+
+V3.4.1
+1. Fix upgrade json file error in linux with USB connection
+
+V3.3.16
+1. Optimize code when remove the device(in network connection) and call the api Ps2_OpenDevice or Ps2_StartStream at the same time
+
+V3.3.15
+1. Optimize quick plug network cable logic in linux
+
+V3.3.14(V3.4.0)
+1. Optimize hoplug logic in network connection 
+
+V3.3.13
+1. Optimize code with alias (0001,0001P)
+
+V3.3.12
+1. Fix hoplug error when add a new device into the same USB 
+
+V3.3.11
+1. Optimize hoplug logic in USB connection 
+
+V3.3.10
 1. Modify 550P decode
 
 V3.3.9
