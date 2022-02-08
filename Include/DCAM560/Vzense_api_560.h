@@ -706,6 +706,14 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetSDKVersion(char* version, int length);
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetMappedPointDepthToRGB(const PsDeviceHandle device, const uint32_t sessionIndex, const PsDepthVector3 depthPoint, const PsVector2u16 rgbSize, PsVector2u16* pPosInRGB);
 
 /**
+* @brief		Trigger frame data once in slave mode.
+* @param[in]	device			The handle of the device on which to enable or disable the feature.
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetSlaveTrigger(PsDeviceHandle device, uint32_t sessionIndex);
+
+/**
 * @brief 		Gets IP from the device specified by <code>uri</code>. 
 * @param[in] 	uri			the uri of the device. See ::PsDeviceInfo for more information.
 * @param[out]	ip			Pointer to a buffer in which to store the device IP. the buffer default size is 17, and the last buffer set '\0'. 
@@ -775,4 +783,11 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBFrequencyOfPowerLine(PsDeviceHandle
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBFrequencyOfPowerLine(PsDeviceHandle device, uint32_t sessionIndex, uint8_t* value);
 
+/**
+* @brief		Reboot the camera.
+* @param[in]	device			The handle of the device on which to enable or disable the feature.
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_RebootCamera(PsDeviceHandle device, uint32_t sessionIndex);
 #endif /* VZENSE_API_560_H */

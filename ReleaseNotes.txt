@@ -1,4 +1,16 @@
-﻿V3.4.8
+﻿V3.4.11
+1. Optimize code when remove the device(in network connection) that without Opened  
+
+V3.4.10
+1. Modiy Ps2_GetWDRPulseCount for the DCAM with network cable connection 
+	
+V3.4.9
+1. Add API to reboot the camera
+	Ps2_RebootCamera
+2. Modify doc
+3. Support wireless network card
+	
+V3.4.8
 1. Add API for DCAM560C
 	Ps2_SetRGBFrequencyOfPowerLine
 	Ps2_GetRGBFrequencyOfPowerLine

@@ -705,4 +705,11 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetSDKVersion(char* version, int length);
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetMappedPointDepthToRGB(const PsDeviceHandle device, const uint32_t sessionIndex, const PsDepthVector3 depthPoint, const PsVector2u16 rgbSize, PsVector2u16* pPosInRGB);
 
+/**
+* @brief		Reboot the camera.
+* @param[in]	device			The handle of the device on which to enable or disable the feature.
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_RebootCamera(PsDeviceHandle device, uint32_t sessionIndex);
 #endif /* VZENSE_API_710_H */
