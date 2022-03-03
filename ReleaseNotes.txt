@@ -1,4 +1,17 @@
-﻿V3.4.11
+﻿V3.4.14
+1. Fix Segmentation fault in linux when call the api Ps2_OpenDevice with network cable connection 
+2. Fix getting rgb-intrinsic error for DCAM560C
+
+V3.4.13
+1. Optimizate mapping operation
+
+V3.4.12
+1. Add protect for that change camer-mode into upgrade mode,but not do upgrade operation 
+2. Add protect for that has no '/dev/hidraw' in linux
+3. Unify the implementation method of post-processing library with DCAM560C and 
+   support the original implementation with the api Ps2_SetLegacyAlgorithmicEnabled
+
+V3.4.11
 1. Optimize code when remove the device(in network connection) that without Opened  
 
 V3.4.10
