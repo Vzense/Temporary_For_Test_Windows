@@ -14,7 +14,11 @@
 * Welcome to the Vzense API documentation. This documentation enables you to quickly get started in your development efforts to programmatically interact with the Vzense TOF RGBD Camera (DCAM710).
 */
 
+#ifdef DCAM_710
 #include "Vzense_define.h"
+#else
+#include "DCAM710/Vzense_define_710.h"
+#endif
 
 /**
 * @brief 		Initializes the API on the device. This function must be invoked before any other Vzense APIs.

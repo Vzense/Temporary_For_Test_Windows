@@ -3,13 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <opencv2/opencv.hpp>
-#include "Vzense_api2.h"
+#include "DCAM560/Vzense_api_560.h"
 #include <thread>
-#ifdef _WIN32
 #include <windows.system.h>
-#else
-#include <sys/timeb.h>
-#endif
 
 #define FPS
 #define FPS_LEN 100
@@ -18,9 +14,7 @@ using namespace cv;
 
 #ifdef FPS
 
-#ifdef _WIN32
 SYSTEMTIME sys;
-#endif
 long delayT = 0;
 
 int countof_loop_tof = 0;
@@ -57,11 +51,7 @@ static void Opencv_Depth(uint32_t slope, int height, int width, uint8_t*pData, c
 	Point2d pointxy(width / 2, height / 2);
 	int val = dispImg.at<ushort>(pointxy);
 	char text[20];
-#ifdef _WIN32
 	sprintf_s(text, "%d", val);
-#else
-	snprintf(text, sizeof(text), "%d", val);
-#endif
 	dispImg.convertTo(dispImg, CV_8U, 255.0 / slope);
 	applyColorMap(dispImg, dispImg, cv::COLORMAP_RAINBOW);
 	int color;
@@ -73,13 +63,8 @@ static void Opencv_Depth(uint32_t slope, int height, int width, uint8_t*pData, c
 	putText(dispImg, text, pointxy, FONT_HERSHEY_DUPLEX, 2, Scalar(color, color, color));
 }
 
-
 int main(int argc, char *argv[])
 {
-#ifndef DCAM_560
-	cout << "DCAM is not 560" << endl;
-	return 0;
-#else
 	PsReturnStatus status;
 	uint32_t deviceIndex = 0;
 	uint32_t deviceCount = 0;
@@ -94,6 +79,8 @@ int main(int argc, char *argv[])
 	PsWDROutputMode wdrMode = { PsWDRTotalRange_Two, PsNearRange, 1, PsFarRange, 1, PsUnknown, 1 };
 	bool f_bWDRMode = false;
 	bool bWDRStyle = true;
+	bool f_bConfidence = false;
+
 	status = Ps2_Initialize();
 	if (status != PsReturnStatus::PsRetOK)
 	{
@@ -469,7 +456,10 @@ GET:
 	cout << "                             2: 640*480" << endl;
 	cout << "Q/q: Enable or disable the mapped RGB in Depth space" << endl;
 	cout << "L/l: Enable or disable the mapped Depth in RGB space" << endl;
-	cout << "V/v: Enable or disable the WDR depth fusion feature " << endl;
+	cout << "V/v: Enable or disable the WDR depth fusion feature" << endl;
+	cout << "C/c: Enable or disable the CondifenceFilter" << endl;
+	cout << "F/f: set the CondifenceFilter Threshold" << endl;
+	cout << "H/h: set the WDRCondifenceFilter Threshold in DataMode(PsWDR_Depth)" << endl;
 	cout << "Esc: Program quit " << endl;
 	cout << "--------------------------------------------------------------------" << endl;
 	cout << "--------------------------------------------------------------------\n" << endl;
@@ -496,14 +486,9 @@ GET:
 
 #ifdef FPS
 
-#ifdef _WIN32
 		GetLocalTime(&sys);
 		long dwEnd = sys.wMilliseconds;
-#else
-		struct  timeb   stTimeb;
-		ftime(&stTimeb);
-		long dwEnd = stTimeb.millitm;
-#endif
+
 		long timedelay = dwEnd - delayT;
 		delayT = dwEnd;
 		if (timedelay < 0) {
@@ -571,11 +556,7 @@ GET:
 						if (fps_wdr1 != 0)
 						{
 							char fps[20];
-#ifdef _WIN32
 							sprintf_s(fps, "FPS: %d", fps_wdr1);
-#else
-							snprintf(fps, sizeof(fps), "FPS: %d", fps_wdr1);
-#endif
 							putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 0, 0));
 						}
 #endif
@@ -598,11 +579,7 @@ GET:
 						if (fps_wdr2 != 0)
 						{
 							char fps[20];
-#ifdef _WIN32
 							sprintf_s(fps, "FPS: %d", fps_wdr2);
-#else
-							snprintf(fps, sizeof(fps), "FPS: %d", fps_wdr2);
-#endif
 							putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 0, 0));
 						}
 #endif
@@ -625,11 +602,7 @@ GET:
 						if (fps_wdr3 != 0)
 						{
 							char fps[20];
-#ifdef _WIN32
 							sprintf_s(fps, "FPS: %d", fps_wdr3);
-#else
-							snprintf(fps, sizeof(fps), "FPS: %d", fps_wdr3);
-#endif
 							putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 0, 0));
 						}
 #endif
@@ -653,11 +626,7 @@ GET:
 					if (fps_tof != 0)
 					{
 						char fps[20];
-#ifdef _WIN32
 						sprintf_s(fps, "FPS: %d", fps_tof);
-#else
-						snprintf(fps, sizeof(fps), "FPS: %d", fps_tof);
-#endif
 						putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 0, 0));
 					}
 #endif
@@ -696,11 +665,7 @@ GET:
 				if (fps_ir != 0)
 				{
 					char fps[20];
-#ifdef _WIN32
 					sprintf_s(fps, "FPS: %d", fps_ir);
-#else
-					snprintf(fps, sizeof(fps), "FPS: %d", fps_ir);
-#endif
 					putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(255, 255, 255));
 				}
 #endif
@@ -756,11 +721,7 @@ GET:
 				if (fps_tof != 0)
 				{
 					char fps[20];
-#ifdef _WIN32
 					sprintf_s(fps, "FPS: %d", fps_tof);
-#else
-					snprintf(fps, sizeof(fps), "FPS: %d", fps_tof);
-#endif
 					putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 0, 0));
 				}
 #endif
@@ -796,11 +757,7 @@ GET:
 				if (fps_rgb != 0)
 				{
 					char fps[20];
-#ifdef _WIN32
 					sprintf_s(fps, "FPS: %d", fps_rgb);
-#else
-					snprintf(fps, sizeof(fps), "FPS: %d", fps_rgb);
-#endif
 					putText(imageMat, fps, Point2d(10, 20), FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 0, 0));
 				}
 #endif
@@ -1234,6 +1191,65 @@ GET:
 				f_bMappedRGB = !f_bMappedRGB;
 			}
 		}
+		else if (key == 'C' || key == 'c')
+		{
+			status = Ps2_SetConfidenceFilterEnabled(deviceHandle, sessionIndex, f_bConfidence);
+			if (PsRetOK == status)
+			{
+				cout << "Set Confidence Filter " << (f_bConfidence ? "true" : "false") << endl;
+			}
+			else
+			{
+				cout << "Set Confidence Filter failed, status:" << status << endl;
+			}
+			f_bConfidence = !f_bConfidence;
+		}
+		else if (key == 'F' || key == 'f')
+		{
+			static uint16_t conthreshold = 0;
+			conthreshold += 10;
+			if (conthreshold > 300)
+				conthreshold = 0;
+
+			status = Ps2_SetConfidenceFilterThreshold(deviceHandle, sessionIndex, conthreshold);
+
+			if (PsRetOK == status)
+			{
+				cout << "Set Confidence Filter Threshold  value: " << conthreshold << endl;
+			}
+			else
+			{
+				cout << "Set Confidence Filter Threshold failed, status:" << status << endl;
+			}
+		}
+		else if (key == 'H' || key == 'h')
+		{
+			static PsWDRConfidenceThreshold  conthreshold = { 0 };
+			conthreshold.threshold1 += 10;
+			if (conthreshold.threshold1 > 100)
+				conthreshold.threshold1 = 0;
+			conthreshold.threshold2 += 20;
+			if (conthreshold.threshold2 > 300)
+				conthreshold.threshold2 = 0;
+			conthreshold.threshold3 += 30;
+			if (conthreshold.threshold3 > 600)
+				conthreshold.threshold3 = 0;
+
+			status = Ps2_SetWDRConfidenceFilterThreshold(deviceHandle, sessionIndex, conthreshold);
+
+			if (PsRetOK == status)
+			{
+				cout << "Set WDR Confidence Filter Threshold value: " << status
+					<< "  ,  " << conthreshold.threshold1
+					<< "  ,  " << conthreshold.threshold2
+					<< "  ,  " << conthreshold.threshold3
+					<< endl;
+			}
+			else
+			{
+				cout << "Set WDR Confidence Filter Threshold failed, status:" << status << endl;
+			}
+		}
 	}
 
 	status = Ps2_CloseDevice(&deviceHandle);
@@ -1242,7 +1258,7 @@ GET:
 	status = Ps2_Shutdown();
 	cout << "Shutdown status: " << status << endl;
 	cv::destroyAllWindows();
-#endif
+
 	return 0;
 }
 

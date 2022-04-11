@@ -14,7 +14,11 @@
 * Welcome to the Vzense API documentation. This documentation enables you to quickly get started in your development efforts to programmatically interact with the Vzense TOF RGBD Camera (DCAM560).
 */
 
+#ifdef DCAM_560
 #include "Vzense_define.h"
+#else
+#include "DCAM560/Vzense_define_560.h"
+#endif
 
 /**
 * @brief 		Initializes the API on the device. This function must be invoked before any other Vzense APIs.
@@ -799,4 +803,57 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_RebootCamera(PsDeviceHandle device, uint3
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetLegacyAlgorithmicEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool enabled);
 
+/**
+* @brief		Enables or disables the ConfidenceFilter feature.
+* @param[in]	device			The handle of the device on which to enable or disable the feature. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in]	bEnabled		Set to <code>true</code> to enable the feature or <code>false</code> to disable the feature.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetConfidenceFilterEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool enabled);
+
+/**
+* @brief 		Returns the Boolean value of whether the ConfidenceFilter feature is enabled or disabled.
+* @param[in]	device			The handle of the device on which to enable or disable the feature. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[out]	bEnabled		Pointer to a variable in which to store the returned Boolean value.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetConfidenceFilterEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool* enabled);
+
+/**
+* @brief 		Sets the ConfidenceFilter threshold value for the device specified by <code>device</code>. 
+* @param[in] 	device			The handle of the device on which to set the threshold. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in] 	threshold		The threshold value to set. 0 will attempt to keep all point data but may not be accurate further away; 1000 is the max value.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetConfidenceFilterThreshold(PsDeviceHandle device, uint32_t sessionIndex, uint16_t threshold);
+
+/**
+* @brief 		Gets the ConfidenceFilter threshold value for the device specified by <code>device</code>. 
+* @param[in] 	device			The handle of the device on which to set the threshold. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in] 	threshold		The threshold value to set. 0 will attempt to keep all point data but may not be accurate further away; 1000 is the max value.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetConfidenceFilterThreshold(PsDeviceHandle device, uint32_t sessionIndex, uint16_t* threshold);
+
+/**
+* @brief 		Sets the WDR ConfidenceFilter threshold value for the device specified by <code>device</code>. 
+* @param[in] 	device			The handle of the device on which to set the threshold. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in] 	threshold		The threshold value to set. 0 will attempt to keep all point data but may not be accurate further away; 1000 is the max value.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetWDRConfidenceFilterThreshold(PsDeviceHandle device, uint32_t sessionIndex, PsWDRConfidenceThreshold wdrconfidencethreshold);
+
+/**
+* @brief 		Gets the WDR ConfidenceFilter threshold value for the device specified by <code>device</code>. 
+* @param[in] 	device			The handle of the device on which to set the threshold. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in] 	threshold		The threshold value to set. 0 will attempt to keep all point data but may not be accurate further away; 1000 is the max value.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetWDRConfidenceFilterThreshold(PsDeviceHandle device, uint32_t sessionIndex, PsWDRConfidenceThreshold* wdrconfidencethreshold);
 #endif /* VZENSE_API_560_H */

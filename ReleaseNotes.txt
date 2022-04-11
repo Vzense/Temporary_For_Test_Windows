@@ -1,4 +1,13 @@
-﻿V3.4.14
+﻿V3.5.0
+1. Add ConfidenceFilter for DCAM550/DCAM560
+
+V3.4.16
+1. Optimize code with that has no '/dev/hidraw' in linux
+
+V3.4.15
+1. Optimize code and add protect
+
+V3.4.14
 1. Fix Segmentation fault in linux when call the api Ps2_OpenDevice with network cable connection 
 2. Fix getting rgb-intrinsic error for DCAM560C
 

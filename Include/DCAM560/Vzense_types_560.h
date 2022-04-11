@@ -218,6 +218,16 @@ typedef struct
 	uint8_t	    option;
 }PsWDRPulseCount;
 
+/**
+* @brief WDR (Wide Dynamic Range) output mode settings (e.g. Near/Far range fusion).
+*/
+typedef struct
+{
+	uint16_t    threshold1;      //!< The confidence threshold of the first range.
+	uint16_t    threshold2;      //!< The confidence threshold of the second range.
+	uint16_t    threshold3;      //!< The confidence threshold of the third range.
+}PsWDRConfidenceThreshold;
+
 #pragma pack (pop)
 
 /**
