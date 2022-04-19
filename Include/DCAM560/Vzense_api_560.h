@@ -856,4 +856,12 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetWDRConfidenceFilterThreshold(PsDeviceH
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetWDRConfidenceFilterThreshold(PsDeviceHandle device, uint32_t sessionIndex, PsWDRConfidenceThreshold* wdrconfidencethreshold);
+
+/**
+* @brief 		Opens the device specified by <code>ip</code>. The device must be subsequently closed using PsCloseDevice().
+* @param[in] 	ip			the ip of the device. See ::PsDeviceInfo for more information.
+* @param[out]	pDevices	the handle of the device on which to open.
+* @return: 		::PsRetOK	if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_OpenDeviceByIP(const char* ip, PsDeviceHandle* pDevice);
 #endif /* VZENSE_API_560_H */

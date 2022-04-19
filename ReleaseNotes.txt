@@ -1,5 +1,7 @@
 ﻿V3.5.0
-1. Add ConfidenceFilter for DCAM550/DCAM560
+1. Add ConfidenceFilter for DCAM550/DCAM560C
+2. Add 'hardwaretimestamp' into 'PsFrame' for DCAM550/DCAM560C
+3. Add API Ps2_OpenDeviceByIP for the DCAMXX with network cable connection 
 
 V3.4.16
 1. Optimize code with that has no '/dev/hidraw' in linux
