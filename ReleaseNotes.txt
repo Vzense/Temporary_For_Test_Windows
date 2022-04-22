@@ -2,6 +2,7 @@
 1. Add ConfidenceFilter for DCAM550/DCAM560C
 2. Add 'hardwaretimestamp' into 'PsFrame' for DCAM550/DCAM560C
 3. Add API Ps2_OpenDeviceByIP for the DCAMXX with network cable connection 
+4. Optimize code for 'Ps2_ReadNextFrame' with the return PsRetReadNextFrameTimeOut(-11)
 
 V3.4.16
 1. Optimize code with that has no '/dev/hidraw' in linux
