@@ -747,21 +747,21 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBBrightness(PsDeviceHandle device, u
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBBrightness(PsDeviceHandle device, uint32_t sessionIndex, char* value);
 
 /**
-* @brief 		Sets the Max value of RGB auto exposure.
+* @brief 		Sets the maximum exposure time of RGB in AEC.
 * @param[in] 	device			The handle of the device.
 * @param[in] 	sessionIndex	The index of the session.
 * @param[in]	value			The value of brightness,in [1,30] and the unit is 1ms.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
-VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBAutoExposure(PsDeviceHandle device, uint32_t sessionIndex, uint8_t value);
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBMaximumExposureTime(PsDeviceHandle device, uint32_t sessionIndex, uint8_t value);
 /**
-* @brief 		Gets the Max value of RGB auto exposure.
+* @brief 		Gets the maximum exposure time  of RGB in AEC.
 * @param[in] 	device			The handle of the device.
 * @param[in] 	sessionIndex	The index of the session.
 * @param[out]	value			The value of brightness,in [1,30] and the unit is 1ms.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
-VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBAutoExposure(PsDeviceHandle device, uint32_t sessionIndex, uint8_t* value);
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBMaximumExposureTime(PsDeviceHandle device, uint32_t sessionIndex, uint8_t* value);
 
 /**
 * @brief 		Sets the RGB frequency of power line.

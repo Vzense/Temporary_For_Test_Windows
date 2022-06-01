@@ -1,5 +1,5 @@
 ﻿V3.5.4
-1. Modify the API 'Ps2_SetRGBExposure/Ps2_GetRGBExposure' to 'Ps2_SetRGBAutoExposure/Ps2_GetRGBAutoExposure'
+1. Modify the API 'Ps2_SetRGBExposure/Ps2_GetRGBExposure' to 'Ps2_SetRGBMaximumExposureTime/Ps2_GetRGBMaximumExposureTime'
 2. Add API
     Ps2_SetRGBManualExposureEnabled
 	Ps2_GetRGBManualExposureEnabled
