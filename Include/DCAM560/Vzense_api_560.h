@@ -349,7 +349,7 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_ConvertDepthToWorld(PsDeviceHandle device
 * @param[out] 	pWorldVector 	Pointer to a buffer in which to output the converted x, y, and z values of the world coordinates, measured in millimeters.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
-VZENSE_C_API_EXPORT PsReturnStatus Ps2_ConvertDepthFrameToWorldVector(PsDeviceHandle device, uint32_t sessionIndex, const PsFrame& depthFrame, PsVector3f* pWorldVector);
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_ConvertDepthFrameToWorldVector(PsDeviceHandle device, uint32_t sessionIndex, const PsFrame depthFrame, PsVector3f* pWorldVector);
 
 /**
 * @brief		Enables or disables the syncronize feature.
@@ -370,8 +370,8 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetSynchronizeEnabled(PsDeviceHandle devi
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetSynchronizeEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool *bEnabled);
 
 /**
-* @brief 		Enables or disables the depth distortion correction feature.
-* @param[in]	device			The handle of the device on which to enable or disable the feature. 
+* @brief 		Enables or disables the depth and ir distortion correction feature.
+* @param[in]	device			The handle of the device on which to enable or disable the feature.
 * @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
 * @param[in] 	bEnabled		Set to <code>true</code> to enable the feature or <code>false</code> to disable the feature.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
@@ -379,31 +379,25 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetSynchronizeEnabled(PsDeviceHandle devi
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetDepthDistortionCorrectionEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool bEnabled);
 
 /**
-* @brief 		Returns the Boolean value of whether the depth distortion correction feature is enabled or disabled.
-* @param[in]	device			The handle of the device on which to enable or disable the feature. 
+* @brief 		Returns the Boolean value of whether the depth and ir distortion correction feature is enabled or disabled.
+* @param[in]	device			The handle of the device on which to enable or disable the feature.
 * @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
 * @param[out]	bEnabled		Pointer to a variable in which to store the returned Boolean value.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetDepthDistortionCorrectionEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool *bEnabled);
 
-/**
-* @brief 		Enables or disables the Ir distortion correction feature.
-* @param[in]	device			The handle of the device on which to enable or disable the feature.
-* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
-* @param[in] 	bEnabled		Set to <code>true</code> to enable the feature or <code>false</code> to disable the feature.
-* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
-*/
+/*
+Removed: merge the function to Ps2_SetDepthDistortionCorrectionEnabled,
+If recover the API 'XX_IrDistortionXXX', stil call the 'XX_DepthDistortionXXX'
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetIrDistortionCorrectionEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool bEnabled);
-
-/**
-* @brief 		Returns the Boolean value of whether the Ir distortion correction feature is enabled or disabled.
-* @param[in]	device			The handle of the device on which to enable or disable the feature. 
-* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
-* @param[out]	bEnabled		Pointer to a variable in which to store the returned Boolean value.
-* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
+
+/*
+Removed: merge the function to Ps2_GetDepthDistortionCorrectionEnabled
+If recover the API 'XX_IrDistortionXXX', stil call the 'XX_DepthDistortionXXX'
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetIrDistortionCorrectionEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool *bEnabled);
+*/
 
 /**
 * @brief 		Enables or disables the RGB distortion correction feature.
@@ -753,21 +747,21 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBBrightness(PsDeviceHandle device, u
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBBrightness(PsDeviceHandle device, uint32_t sessionIndex, char* value);
 
 /**
-* @brief 		Sets the RGB exposure.
+* @brief 		Sets the Max value of RGB auto exposure.
 * @param[in] 	device			The handle of the device.
 * @param[in] 	sessionIndex	The index of the session.
-* @param[in]	value			The value of brightness,in [1,30].
+* @param[in]	value			The value of brightness,in [1,30] and the unit is 1ms.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
-VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBExposure(PsDeviceHandle device, uint32_t sessionIndex, uint8_t value);
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBAutoExposure(PsDeviceHandle device, uint32_t sessionIndex, uint8_t value);
 /**
-* @brief 		Gets the RGB exposure.
+* @brief 		Gets the Max value of RGB auto exposure.
 * @param[in] 	device			The handle of the device.
 * @param[in] 	sessionIndex	The index of the session.
-* @param[out]	value			The value of brightness,in [1,30].
+* @param[out]	value			The value of brightness,in [1,30] and the unit is 1ms.
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
-VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBExposure(PsDeviceHandle device, uint32_t sessionIndex, uint8_t* value);
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBAutoExposure(PsDeviceHandle device, uint32_t sessionIndex, uint8_t* value);
 
 /**
 * @brief 		Sets the RGB frequency of power line.
@@ -864,4 +858,40 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetWDRConfidenceFilterThreshold(PsDeviceH
 * @return: 		::PsRetOK	if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_OpenDeviceByIP(const char* ip, PsDeviceHandle* pDevice);
+
+/**
+* @brief		Enables or disables the RGB manual exposure feature.
+* @param[in]	device			The handle of the device on which to enable or disable the feature. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in]	bEnabled		Set to <code>true</code> to enable the feature or <code>false</code> to disable the feature.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBManualExposureEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool enabled);
+
+/**
+* @brief 		Returns the Boolean value of whether the RGB manual exposure feature is enabled or disabled.
+* @param[in]	device			The handle of the device on which to enable or disable the feature. 
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[out]	bEnabled		Pointer to a variable in which to store the returned Boolean value.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBManualExposureEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool* enabled);
+
+/**
+* @brief 		Sets the RGB absolute exposure in manual.
+* @param[in] 	device			The handle of the device.
+* @param[in] 	sessionIndex	The index of the session.
+* @param[in]	value			The value of brightness,in [1,4000] and the unit is 100us.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetRGBAbsoluteExposure(PsDeviceHandle device, uint32_t sessionIndex, uint16_t value);
+
+/**
+* @brief 		Gets the RGB absolute exposure in manual.
+* @param[in] 	device			The handle of the device.
+* @param[in] 	sessionIndex	The index of the session.
+* @param[out]	value			The value of brightness,in [1,4000] and the unit is 100us.
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetRGBAbsoluteExposure(PsDeviceHandle device, uint32_t sessionIndex, uint16_t* value);
 #endif /* VZENSE_API_560_H */

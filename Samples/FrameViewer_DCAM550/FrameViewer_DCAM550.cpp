@@ -404,8 +404,8 @@ GET:
 	cout << "                    1: Output IR in 30 fps" << endl;
 	cout << "                    2: Output Depth and IR in 30 fps" << endl;
 	cout << "                    3: Output WDR_Depth in 30 fps" << endl;
-	cout << "C/c: Enable or disable the CondifenceFilter in DataMode(DepthAndIR_30) " << endl;
-	cout << "F/f: set the CondifenceFilter Threshold in DataMode(DepthAndIR_30)" << endl;
+	cout << "C/c: Enable or disable the ConfidenceFilter in DataMode(DepthAndIR_30) " << endl;
+	cout << "F/f: set the ConfidenceFilter Threshold in DataMode(DepthAndIR_30)" << endl;
 	cout << "Esc: Program quit " << endl;
 	cout << "--------------------------------------------------------------------" << endl;
 	cout << "--------------------------------------------------------------------\n" << endl;
@@ -946,7 +946,7 @@ GET:
 			}
 			else
 			{
-				cout << "Set background threshold error,check if the datamode is WDR mode" << endl;
+				cout << "Set background threshold error,check if the datamode is WDR mode or the confidence filter is opened" << endl;
 			}
 		}			
 		else if (key == 'V' || key == 'v')

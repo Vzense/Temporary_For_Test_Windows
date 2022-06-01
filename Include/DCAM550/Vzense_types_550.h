@@ -130,8 +130,7 @@ typedef struct
 	uint32_t reserved : 24;
 }PsFrameReady;
 
-struct Device;
-typedef Device* PsDeviceHandle;
+typedef void* PsDeviceHandle;
 
 typedef struct
 {
@@ -187,8 +186,8 @@ typedef struct
 typedef struct
 {
  	uint16_t    pulseCount1;      //!< The pulseCount of the first range.
-	uint16_t    pulseCount2;      //!< The pulseCount of the first range.
-	uint16_t    pulseCount3;      //!< The pulseCount of the first range.
+	uint16_t    pulseCount2;      //!< The pulseCount of the second range.
+	uint16_t    pulseCount3;      //!< The pulseCount of the third range.
 	uint8_t	    option;
 }PsWDRPulseCount;
 

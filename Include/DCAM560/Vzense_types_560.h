@@ -158,8 +158,7 @@ typedef struct
 	uint32_t reserved : 24;
 }PsFrameReady;
 
-struct Device;
-typedef Device* PsDeviceHandle;
+typedef void* PsDeviceHandle;
 
 typedef struct
 {
